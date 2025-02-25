@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from django import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -161,13 +163,14 @@ ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_EMAIL_REQUIRED = True
 
 
+load_dotenv()
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '518928992966-89o4m4m104vrb8l74l4b0dcmb59r0pav.apps.googleusercontent.com',
-            'secret': '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',
-            'key': '',
+            'client_id': os.getenv("client_id"),
+            'secret': os.getenv("secret"),
+            'key': os.getenv("key"),
         }
     }
 }
